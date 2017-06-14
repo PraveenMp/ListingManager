@@ -25,12 +25,30 @@ export class AgentComponent implements OnInit {
         this.agentServices.getAgents().subscribe(response => {
             if (response != null) {
                 this.agents = response;
+                console.log(response)
             } else {
                 this.errorMessage = true;
             }
         })
     }
-    addAgents() {
 
+    getAllAgents() {
+             this.agentServices.getAgents().subscribe(response => {
+            if (response != null) {
+                this.agents = response;
+            } else {
+                this.errorMessage = true;
+            }
+        })
+    }
+    onSubmit() {
+        this.agentServices.saveAgents(this.agent).subscribe(response => {
+            if (response != null) {
+                this.getAllAgents();
+                this.showForm=false;
+            } else {
+                this.errorMessage = true;
+            }
+        })
     }
 }

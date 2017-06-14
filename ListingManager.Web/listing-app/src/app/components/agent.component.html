@@ -6,7 +6,7 @@
         <form (ngSubmit)="onSubmit()" #agentForm="ngForm">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" required [(ngModel)]="agent.name" name="name" #name="ngModel">
+                <input type="text" class="form-control" id="name" required [(ngModel)]="agent.AgentName" name="name" #name="ngModel">
                 <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
                     Agent name is required
                 </div>

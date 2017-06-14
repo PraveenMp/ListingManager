@@ -40,5 +40,24 @@ namespace ListingManager.Api.Controllers
                 return Json<IEnumerable<AgentDTO>>(agentDTO);
             }
         }
+
+        [HttpPost]
+        [Route("agent")]
+        public HttpResponseMessage Post(Agent agent)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                agentRepository.InsertAgent(agent);
+                agentRepository.Save();
+            }
+            catch(Exception ex)
+            {
+                response = Request.CreateResponse(HttpStatusCode.InternalServerError, "Error");
+                return response;
+            }
+            response = Request.CreateResponse(HttpStatusCode.OK, "Success");
+            return response;
+        }
     }
 }

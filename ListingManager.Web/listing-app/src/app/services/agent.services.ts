@@ -16,17 +16,17 @@ export class AgentService {
 
     getAgents() {
         var httpHeaders = this.appHelpersSvc.httpHeaders;
-        return this.http.get(this.appHelpersSvc.apiAddress + "listing",
+        return this.http.get(this.appHelpersSvc.apiAddress + "agent",
             { headers: httpHeaders })
             .map((response: Response) => <IAgent>response.json()).catch(this.handleError);
     }
 
-    // saveAgents(agent:IAgent) {
-    //     var httpHeaders = this.appHelpersSvc.httpHeaders;
-    //     return this.http.post(this.appHelpersSvc.apiAddress + "agent",
-    //         { headers: httpHeaders })
-    //         .map((response: Response) => <IAgent>response.json()).catch(this.handleError);
-    // }
+    saveAgents(agent) {
+        var httpHeaders = this.appHelpersSvc.httpHeaders;
+        return this.http.post(this.appHelpersSvc.apiAddress + "agent", JSON.stringify(agent),
+            { headers: httpHeaders })
+            .map((response: Response) => <IAgent>response.json()).catch(this.handleError);
+    }
 
    public handleError(error: Response) {
     console.error(error);

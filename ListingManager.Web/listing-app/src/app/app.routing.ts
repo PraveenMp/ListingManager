@@ -7,31 +7,31 @@ import { OpenHouseComponent } from './components/openhouse.component';
 import { PageNotFoundComponent } from './shared/pagenotfound.component';
 
 export const appRoutes: Routes = [
-    { 
+    {
         path: '',
         component: ListingComponent
     },
     {
-         path: 'agent',
-         component: AgentComponent
+        path: 'agent',
+        component: AgentComponent
     },
     {
-         path: 'listing',
-         component: ListingComponent
+        path: 'listing',
+        component: ListingComponent
     },
-     {
-         path: 'openhouse',
-         component: OpenHouseComponent
+    {
+        path: 'openhouse',
+        component: OpenHouseComponent
     },
-    { 
-        path: '**', 
+    {
+        path: '**',
         component: PageNotFoundComponent
-     }
+    }
 ]
 
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],
-    declarations:[
+    declarations: [
         PageNotFoundComponent
     ],
     exports: [RouterModule]

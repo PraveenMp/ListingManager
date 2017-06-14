@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace ListingManager.Domain.Repository
 {
-    public class AgentRepository:IAgentRepository
+    public class AgentRepository : IAgentRepository
     {
 
         private ListingManagerContext listingMangerContext;
@@ -19,7 +19,7 @@ namespace ListingManager.Domain.Repository
             this.listingMangerContext = context;
         }
 
-         public IEnumerable<Agent> GetAgents()
+        public IEnumerable<Agent> GetAgents()
         {
             return listingMangerContext.Agents.ToList();
         }
@@ -63,7 +63,6 @@ namespace ListingManager.Domain.Repository
             }
             this.disposed = true;
         }
-
         public void Dispose()
         {
             Dispose(true);

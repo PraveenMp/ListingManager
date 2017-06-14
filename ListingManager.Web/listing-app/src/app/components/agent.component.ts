@@ -54,7 +54,7 @@ export class AgentComponent implements OnInit {
         }
         else {
             this.agentServices.updateAgent(this.agent).subscribe(response => {
-                 console.log("Update");
+                console.log("Update");
                 if (response != null) {
                     this.getAllAgents();
                     this.showForm = false;
@@ -71,14 +71,19 @@ export class AgentComponent implements OnInit {
     }
 
     deleteAgent(agentId) {
-        console.log(agentId);
-          this.agentServices.deleteAgent(agentId).subscribe(response => {
-                 console.log("delete");
-                if (response != null) {
-                    this.getAllAgents();
-                } else {
-                    this.errorMessage = true;
-                }
-            })
+        //Todo: Confirm Window
+        this.agentServices.deleteAgent(agentId).subscribe(response => {
+            console.log("delete");
+            if (response != null) {
+                this.getAllAgents();
+            } else {
+                this.errorMessage = true;
+            }
+        })
+    }
+
+    cancel() {
+        this.agent = new Agent();
+        this.showForm=false;
     }
 }

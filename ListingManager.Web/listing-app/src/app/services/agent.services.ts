@@ -35,9 +35,9 @@ export class AgentService {
             .map((response: Response) => <IAgent>response.json()).catch(this.handleError);
     }
 
-      deleteAgent(agentId) {
+    deleteAgent(agentId) {
         var httpHeaders = this.appHelpersSvc.httpHeaders;
-        return this.http.delete(this.appHelpersSvc.apiAddress + "agent/"+agentId,
+        return this.http.delete(this.appHelpersSvc.apiAddress + "agent/" + agentId,
             { headers: httpHeaders })
             .map((response: Response) => <IAgent>response.json()).catch(this.handleError);
     }

@@ -26,7 +26,8 @@
             <tr *ngFor="let agent of agents">
                 <th scope="row">{{agent.AgentId}}</th>
                 <td>{{agent.AgentName}}</td>
-                <td><button class="btn btn-success">Edit</button> <button class="btn btn-danger">Delete</button> </td>
+                <td><button class="btn btn-success" (click)="updateAgent(agent)">Edit</button> 
+                <button class="btn btn-danger" (click)="deleteAgent(agent.AgentId)">Delete</button> </td>
             </tr>
         </tbody>
     </table>

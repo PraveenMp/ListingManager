@@ -59,5 +59,43 @@ namespace ListingManager.Api.Controllers
             response = Request.CreateResponse(HttpStatusCode.OK, "Success");
             return response;
         }
+
+        [HttpPut]
+        [Route("agent")]
+        public HttpResponseMessage Put(Agent agent)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                agentRepository.UpdateAgent(agent);
+                agentRepository.Save();
+            }
+            catch (Exception ex)
+            {
+                response = Request.CreateResponse(HttpStatusCode.InternalServerError, "Error");
+                return response;
+            }
+            response = Request.CreateResponse(HttpStatusCode.OK, "Success");
+            return response;
+        }
+
+        [HttpDelete]
+        [Route("agent/{agentId}")]
+        public HttpResponseMessage Delete(int agentId)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                agentRepository.DeleteAgent(agentId);
+                agentRepository.Save();
+            }
+            catch (Exception ex)
+            {
+                response = Request.CreateResponse(HttpStatusCode.InternalServerError, "Error");
+                return response;
+            }
+            response = Request.CreateResponse(HttpStatusCode.OK, "Success");
+            return response;
+        }
     }
 }

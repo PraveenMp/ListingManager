@@ -21,17 +21,31 @@ export class AgentService {
             .map((response: Response) => <IAgent>response.json()).catch(this.handleError);
     }
 
-    saveAgents(agent) {
+    saveAgent(agent) {
         var httpHeaders = this.appHelpersSvc.httpHeaders;
         return this.http.post(this.appHelpersSvc.apiAddress + "agent", JSON.stringify(agent),
             { headers: httpHeaders })
             .map((response: Response) => <IAgent>response.json()).catch(this.handleError);
     }
 
-   public handleError(error: Response) {
-    console.error(error);
-    return Observable.throw(error.json().error || 'Server error');
-  }
+    updateAgent(agent) {
+        var httpHeaders = this.appHelpersSvc.httpHeaders;
+        return this.http.put(this.appHelpersSvc.apiAddress + "agent", JSON.stringify(agent),
+            { headers: httpHeaders })
+            .map((response: Response) => <IAgent>response.json()).catch(this.handleError);
+    }
+
+      deleteAgent(agentId) {
+        var httpHeaders = this.appHelpersSvc.httpHeaders;
+        return this.http.delete(this.appHelpersSvc.apiAddress + "agent/"+agentId,
+            { headers: httpHeaders })
+            .map((response: Response) => <IAgent>response.json()).catch(this.handleError);
+    }
+
+    public handleError(error: Response) {
+        console.error(error);
+        return Observable.throw(error.json().error || 'Server error');
+    }
 
 
 }

@@ -1,25 +1,29 @@
 <div>
     <h2>Listings </h2>
-    <button class="btn btn-warning">Add Listings</button><br>
-<table class="table table-bordered" >
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Agent Name</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody *ngIf="!errorMessage">
-    <tr *ngFor="let listing of listings">
-      <th scope="row" >{{listing.ListingId}}</th>
-      <td>{{listing.ListingName}}</td>
-      <td>{{listing.ListingAddress}}</td>
-      <td>@{{listing.AgentName}}</td>
-      <td><button class="btn btn-success">Edit</button> <button class="btn btn-danger">Delete</button> </td>
-    </tr>
-  </tbody>
-</table>
-<h3 *ngIf="errorMessage">No Listings Found</h3>
+    <button class="btn btn-warning add-button" (click)="showForm=!showForm">Add Listings</button>
+    <div class="form" *ngIf="showForm">
+            <h3>TODO:Code to add form</h3>
+    </div>
+    
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Agent Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="!errorMessage">
+            <tr *ngFor="let listing of listings">
+                <th scope="row">{{listing.ListingId}}</th>
+                <td>{{listing.ListingName}}</td>
+                <td>{{listing.ListingAddress}}</td>
+                <td>@{{listing.AgentName}}</td>
+                <td><button class="btn btn-success">Edit</button> <button class="btn btn-danger">Delete</button> </td>
+            </tr>
+        </tbody>
+    </table>
+    <h3 *ngIf="errorMessage">No Listings Found</h3>
 </div>

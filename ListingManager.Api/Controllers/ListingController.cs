@@ -17,7 +17,7 @@ namespace ListingManager.Api.Controllers
     public class ListingController : ApiController
     {
         private IListingRepository listingRespository;
-        public ListingController(/*IListingRepository listingRespository*/)
+        public ListingController()
         {
             this.listingRespository = new ListingRepository(new ListingManagerContext());
         }

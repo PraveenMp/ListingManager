@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
@@ -11,6 +12,7 @@ import { AppRouterModule } from './app.routing';
 
 import { AppHelpersService } from 'app/services/app-helper.services';
 import { ListingsService } from 'app/services/listings.services';
+import { AgentService } from 'app/services/agent.services';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,13 @@ import { ListingsService } from 'app/services/listings.services';
   imports: [
     BrowserModule,
     AppRouterModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [
     AppHelpersService,
-    ListingsService
+    ListingsService,
+    AgentService
   ],
   bootstrap: [AppComponent]
 })

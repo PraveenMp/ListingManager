@@ -9,3 +9,13 @@
 .cust-pointer {
      cursor:pointer;
 }
+.delete-confirmation {
+    position: absolute;
+    z-index: 555;
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    padding: 25% 0px;
+    color: #fff;
+}

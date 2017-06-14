@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using Newtonsoft.Json.Serialization;
+using System.Net.Http.Headers;
 
 namespace ListingManager.Api
 {
@@ -13,11 +14,15 @@ namespace ListingManager.Api
         {
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
-            
+
 
             // Web API routes
+            config.EnableCors();
             config.MapHttpAttributeRoutes();
 
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+
+            
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

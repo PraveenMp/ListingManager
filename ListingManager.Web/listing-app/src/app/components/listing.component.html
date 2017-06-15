@@ -1,7 +1,7 @@
 <div>
     <h2>Listings</h2>
     <hr>
-    <button class="btn btn-warning add-button" (click)="showForm=!showForm">Add Listings</button>
+    <button class="btn btn-warning add-button" (click)="addListings();showForm=!showForm">Add Listings</button>
 
     <div class="form col-md-4" *ngIf="showForm">
         <form (ngSubmit)="onSubmit()" #agentForm="ngForm">
@@ -21,14 +21,14 @@
             </div>
               <div class="form-group">
                 <label for="agentName">Agent</label>
-               <select id="agentName" class="form-control"  [(ngModel)]="listing.ListingAgentId" #agentname="ngModel" name="agentName" required>
-                   <option>Test</option>
+               <select id="agentName" class="form-control"  [(ngModel)]="listing.AgentId" name="agentname" #agentname="ngModel"  >
+                   <option *ngFor="let agent of listing.Agent"[ngValue]="agent.AgentId">{{agent.AgentName}}</option>
                </select>
-                <!--<div [hidden]="agentName.valid || agentName.pristine" class="alert alert-danger">
-                    agent name is required
-                </div>-->
+                <div [hidden]="agentname.valid || agentname.pristine" class="alert alert-danger">
+                    address is required
+                </div>
             </div>
-            <button type="submit" class="btn btn-success" [disabled]="!listing.form.valid">Submit</button>
+            <button type="submit" class="btn btn-success" [disabled]="!listing.form.valid && !agentname.valid">Submit</button>
             <button type="submit" class="btn btn-default cust-pointer" (click)="cancel()">Cancel</button>
         </form>
     </div>
@@ -43,12 +43,13 @@
             </tr>
         </thead>
         <tbody *ngIf="!errorMessage">
-            <tr *ngFor="let listing of listings">
-                <th scope="row">{{listing.ListingId}}</th>
+            <tr *ngFor="let listing of listings;let i=index">
+                <th scope="row">{{i+1}}</th>
                 <td>{{listing.ListingName}}</td>
                 <td>{{listing.ListingAddress}}</td>
-                <td>@{{listing.AgentName}}</td>
-                <td><button class="btn btn-success">Edit</button> <button class="btn btn-danger">Delete</button> </td>
+                <td>{{listing.AgentName}}</td>
+                <td><button class="btn btn-success" (click)="updateListing(listing)">Edit</button> 
+                <button class="btn btn-danger" (click)="deleteListing(listing.ListingId)">Delete</button> </td>
             </tr>
         </tbody>
     </table>

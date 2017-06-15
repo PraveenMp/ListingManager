@@ -22,7 +22,7 @@ export class ListingsService {
             .map((response: Response) => <Ilisting>response.json()).catch(this.handleError);
     }
 
-    
+
     saveAgent(listing) {
         var httpHeaders = this.appHelpersSvc.httpHeaders;
         return this.http.post(this.appHelpersSvc.apiAddress + "listing", JSON.stringify(listing),
@@ -37,10 +37,16 @@ export class ListingsService {
             .map((response: Response) => <Ilisting>response.json()).catch(this.handleError);
     }
 
-   public handleError(error: Response) {
-    console.error(error);
-    return Observable.throw(error.json().error || 'Server error');
-  }
+    deleteListing(listingId) {
+        var httpHeaders = this.appHelpersSvc.httpHeaders;
+        return this.http.delete(this.appHelpersSvc.apiAddress + "listing/" + listingId,
+            { headers: httpHeaders })
+            .map((response: Response) => <Ilisting>response.json()).catch(this.handleError);
+    }
+    public handleError(error: Response) {
+        console.error(error);
+        return Observable.throw(error.json().error || 'Server error');
+    }
 
 
 }

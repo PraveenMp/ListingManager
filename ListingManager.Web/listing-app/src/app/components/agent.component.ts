@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AgentService } from 'app/services/agent.services';
 import { IAgent } from 'app/interfaces/IAgent';
-export class Agent {
-    constructor(
-        public AgentId?: number,
-        public AgentName?: string,
-    ) { }
-}
+import { Agent } from 'app/models/agent';
+
 @Component({
     selector: 'agent',
     templateUrl: './agent.component.html'

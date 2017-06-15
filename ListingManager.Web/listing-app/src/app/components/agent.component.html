@@ -1,6 +1,6 @@
 <div>
     <h2>Agents</h2>
-      <hr>
+    <hr>
     <button class="btn btn-warning add-button" (click)="showForm=!showForm">Add Agents</button>
     <div class="form col-md-4" *ngIf="showForm">
         <form (ngSubmit)="onSubmit()" #agentForm="ngForm">
@@ -12,7 +12,7 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-success" [disabled]="!agentForm.form.valid">Submit</button>
-             <button type="submit" class="btn btn-default cust-pointer" (click)="cancel()">Cancel</button>
+            <button type="submit" class="btn btn-default cust-pointer" (click)="cancel()">Cancel</button>
         </form>
     </div>
     <table class="table table-bordered">

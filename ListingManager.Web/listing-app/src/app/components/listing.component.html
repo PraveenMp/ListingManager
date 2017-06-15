@@ -1,7 +1,7 @@
 <div>
-    <h2>Listings</h2>
+    <h2>Listing Details</h2>
     <hr>
-    <button class="btn btn-warning add-button" (click)="addListings();showForm=!showForm">Add Listings</button>
+    <button class="btn btn-warning add-button" (click)="addListings();showForm=!showForm">Add Listing</button>
 
     <div class="form col-md-4" *ngIf="showForm">
         <form (ngSubmit)="onSubmit()" #agentForm="ngForm">

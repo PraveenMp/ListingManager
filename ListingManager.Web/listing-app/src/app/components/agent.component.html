@@ -1,8 +1,8 @@
 <div>
     <h2>Agents</h2>
+      <hr>
     <button class="btn btn-warning add-button" (click)="showForm=!showForm">Add Agents</button>
-
-    <div class="form" *ngIf="showForm">
+    <div class="form col-md-4" *ngIf="showForm">
         <form (ngSubmit)="onSubmit()" #agentForm="ngForm">
             <div class="form-group">
                 <label for="name">Name</label>

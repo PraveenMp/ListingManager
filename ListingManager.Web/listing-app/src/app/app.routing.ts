@@ -9,7 +9,7 @@ import { PageNotFoundComponent } from './shared/pagenotfound.component';
 export const appRoutes: Routes = [
     {
         path: '',
-        component: ListingComponent
+        component: AgentComponent
     },
     {
         path: 'agent',

@@ -13,6 +13,9 @@ using System.Web.Http.Description;
 
 namespace ListingManager.Api.Controllers
 {
+    /// <summary>
+    /// Get the details of listing controller
+    /// </summary>
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ListingController : ApiController
     {
@@ -21,6 +24,11 @@ namespace ListingManager.Api.Controllers
         {
             this.listingRespository = new ListingRepository(new ListingManagerContext());
         }
+
+        /// <summary>
+        /// Get all the listings
+        /// </summary>
+        /// <returns>Returns list of listings</returns>
         [HttpGet]
         [Route("listing")]
         [ResponseType(typeof(IEnumerable<ListingDTO>))]

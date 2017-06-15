@@ -24,8 +24,8 @@
             </tr>
         </thead>
         <tbody *ngIf="!errorMessage">
-            <tr *ngFor="let agent of agents">
-                <th scope="row">{{agent.AgentId}}</th>
+            <tr *ngFor="let agent of agents;let i=index">
+                <th scope="row">{{i+1}}</th>
                 <td>{{agent.AgentName}}</td>
                 <td><button class="btn btn-success" (click)="updateAgent(agent)">Edit</button>
                     <button class="btn btn-danger" (click)="deleteAgent(agent.AgentId)">Delete</button> </td>

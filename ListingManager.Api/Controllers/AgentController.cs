@@ -13,15 +13,23 @@ using System.Web.Http.Description;
 
 namespace ListingManager.Api.Controllers
 {
+    /// <summary>
+    /// Get detsils of Agent
+    /// </summary>
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class AgentController : ApiController
     {
         private IAgentRepository agentRepository;
+
         public AgentController()
         {
             this.agentRepository = new AgentRepository(new ListingManagerContext());
         }
 
+        /// <summary>
+        /// Method to get all the Agents 
+        /// </summary>
+        /// <returns>All the agents</returns>
         [HttpGet]
         [Route("agent")]
         [ResponseType(typeof(IEnumerable<ListingDTO>))]
@@ -41,6 +49,11 @@ namespace ListingManager.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Add Agent details to database
+        /// </summary>
+        /// <param name="agent">takes agent type as input</param>
+        /// <returns>Return HttpResponseMessage Type</returns>
         [HttpPost]
         [Route("agent")]
         public HttpResponseMessage Post(Agent agent)
@@ -51,7 +64,7 @@ namespace ListingManager.Api.Controllers
                 agentRepository.InsertAgent(agent);
                 agentRepository.Save();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 response = Request.CreateResponse(HttpStatusCode.InternalServerError, "Error");
                 return response;
@@ -60,6 +73,12 @@ namespace ListingManager.Api.Controllers
             return response;
         }
 
+
+        /// <summary>
+        /// Update agent details
+        /// </summary>
+        /// <param name="agent"></param>
+        /// <returns>Return HttpResponseMessage Type</returns>
         [HttpPut]
         [Route("agent")]
         public HttpResponseMessage Put(Agent agent)
@@ -79,6 +98,11 @@ namespace ListingManager.Api.Controllers
             return response;
         }
 
+        /// <summary>
+        /// Delete the agent
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <returns>Return HttpResponseMessage Type</returns>
         [HttpDelete]
         [Route("agent/{agentId}")]
         public HttpResponseMessage Delete(int agentId)

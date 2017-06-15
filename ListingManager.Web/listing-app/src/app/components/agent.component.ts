@@ -41,7 +41,7 @@ export class AgentComponent implements OnInit {
         })
     }
     onSubmit() {
-        if (typeof this.agent.AgentId == undefined) {
+        if (typeof this.agent.AgentId == 'undefined') {
             console.log("Save");
             this.agentServices.saveAgent(this.agent).subscribe(response => {
                 if (response != null) {

@@ -20,7 +20,7 @@ export class ListingComponent implements OnInit {
     }
     ngOnInit() {
         this.listingService.getListings().subscribe(response => {
-            if (response != null) {
+           if (response.length !=0) {
                 this.listings = response;
             } else {
                 this.errorMessage = true;
@@ -28,9 +28,9 @@ export class ListingComponent implements OnInit {
         })
 
         this.agentServices.getAgents().subscribe(response => {
-            if (response != null) {
+           if (response.length !=0) {             
                 this.listing.Agent = response;
-                this.agentList= this.listing.Agent;
+                this.agentList= response;
             } else {
                 this.errorMessage = true;
             }
@@ -47,7 +47,7 @@ export class ListingComponent implements OnInit {
             }
         })
     }
-    addListings() {
+    addListing() {
         this.listing=new Listing();
         this.listing.Agent=this.agentList;
     }
@@ -65,7 +65,6 @@ export class ListingComponent implements OnInit {
         }
         else {
             this.listingService.updateAgent(this.listing).subscribe(response => {
-                console.log("Update");
                 if (response != null) {
                     this.getAllListings();
                     this.showForm = false;
@@ -78,7 +77,6 @@ export class ListingComponent implements OnInit {
     }
 
     updateListing(updateListing) {
-
         this.listing = updateListing;
         this.listing.AgentId=updateListing["AgentId"];
         this.listing.Agent=this.agentList;

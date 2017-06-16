@@ -4,7 +4,7 @@
     <button class="btn btn-warning add-button" (click)="addOpenHouse();showForm=!showForm">Add OpenHouse</button>
 
     <div class="form col-md-4" *ngIf="showForm">
-        <form (ngSubmit)="onSubmit()" #openHouse="ngForm">
+        <form (ngSubmit)="onSubmit()" #openHouseform="ngForm">
             <div class="form-group">
                 <label for="listingname">OpenHouse Begin Date</label>
                 <input type="date" class="form-control" id="begindate" required [(ngModel)]="openhouse.OpenHouseBeginDate" name="begindate" #begindate="ngModel">
@@ -21,14 +21,14 @@
             </div>
               <div class="form-group">
                 <label for="openhouselisting">Listing Name</label>
-               <select id="openhouselisting" class="form-control"  [(ngModel)]="openhouse.ListingId" name="openhouselisting" #openhouselisting="ngModel"  >
+               <select id="openhouselisting" class="form-control"  [(ngModel)]="openhouse.ListingId" name="openhouselisting" #openhouselisting="ngModel" required >
                    <option *ngFor="let listing of openhouse.Listing"[ngValue]="listing.ListingId">{{listing.ListingName}}</option>
                </select>
                 <div [hidden]="openhouselisting.valid || openhouselisting.pristine" class="alert alert-danger">
-                    address is required
+                    Listing name is required
                 </div>
             </div>
-            <button type="submit" class="btn btn-success" [disabled]="!openHouse.form.valid && !openhouselisting.valid">Submit</button>
+            <button type="submit" class="btn btn-success" [disabled]="!openHouseform.form.valid || !openhouselisting.valid">Submit</button>
             <button type="submit" class="btn btn-default cust-pointer" (click)="cancel()">Cancel</button>
         </form>
     </div>

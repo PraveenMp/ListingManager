@@ -1,10 +1,10 @@
 <div>
     <h2>Listing Details</h2>
     <hr>
-    <button class="btn btn-warning add-button" (click)="addListings();showForm=!showForm">Add Listing</button>
+    <button class="btn btn-warning add-button" (click)="addListing();showForm=!showForm">Add Listing</button>
 
     <div class="form col-md-4" *ngIf="showForm">
-        <form (ngSubmit)="onSubmit()" #listing="ngForm">
+        <form (ngSubmit)="onSubmit()" #listingform="ngForm">
             <div class="form-group">
                 <label for="listingname">Name</label>
                 <input type="text" class="form-control" id="listingname" required [(ngModel)]="listing.ListingName" name="listingname" #listingname="ngModel">
@@ -21,14 +21,14 @@
             </div>
               <div class="form-group">
                 <label for="agentName">Agent</label>
-               <select id="agentName" class="form-control"  [(ngModel)]="listing.AgentId" name="agentname" #agentname="ngModel"  >
+               <select id="agentName" class="form-control"  [(ngModel)]="listing.AgentId" name="agentname" #agentname="ngModel" required>
                    <option *ngFor="let agent of listing.Agent"[ngValue]="agent.AgentId">{{agent.AgentName}}</option>
                </select>
                 <div [hidden]="agentname.valid || agentname.pristine" class="alert alert-danger">
                     address is required
                 </div>
             </div>
-            <button type="submit" class="btn btn-success" [disabled]="!listing.form.valid && !agentname.valid">Submit</button>
+            <button type="submit" class="btn btn-success" [disabled]="!listingform.form.valid || !agentname.valid">Submit</button>
             <button type="submit" class="btn btn-default cust-pointer" (click)="cancel()">Cancel</button>
         </form>
     </div>

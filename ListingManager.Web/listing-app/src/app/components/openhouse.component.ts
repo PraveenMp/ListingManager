@@ -6,8 +6,8 @@ import { IOpenHouse } from 'app/interfaces/IOpenHouse';
 import { OpenHouse } from 'app/models/openhouse';
 
 @Component({
-  selector: 'openhouse',
-  templateUrl: './openhouse.component.html'
+    selector: 'openhouse',
+    templateUrl: './openhouse.component.html'
 })
 export class OpenHouseComponent implements OnInit {
     showForm: boolean = false;
@@ -16,14 +16,14 @@ export class OpenHouseComponent implements OnInit {
     openhouse = new OpenHouse();
     listings;
 
-    constructor(private openHouseService: OpenHouseService,private listingService: ListingsService) {
+    constructor(private openHouseService: OpenHouseService, private listingService: ListingsService) {
 
     }
 
-      ngOnInit() {
+    ngOnInit() {
         this.openHouseService.getOpenHouseDetails().subscribe(response => {
-    
-            if (response.length !=0) {
+
+            if (response.length != 0) {
                 this.openHouselist = response;
                 console.log(this.openHouselist)
             } else {
@@ -31,17 +31,17 @@ export class OpenHouseComponent implements OnInit {
             }
         })
 
-            this.listingService.getListings().subscribe(response => {
-             if (response.length !=0) {
+        this.listingService.getListings().subscribe(response => {
+            if (response.length != 0) {
                 this.listings = response;
-                this.openhouse.Listing=this.listings;
-            } 
+                this.openhouse.Listing = this.listings;
+            }
         })
-      }
+    }
 
-      getAllOpenHouse() {
-       this.openHouseService.getOpenHouseDetails().subscribe(response => {
-            if (response.length !=0) {
+    getAllOpenHouse() {
+        this.openHouseService.getOpenHouseDetails().subscribe(response => {
+            if (response.length != 0) {
                 this.openHouselist = response;
             } else {
                 this.errorMessage = true;
@@ -50,14 +50,14 @@ export class OpenHouseComponent implements OnInit {
     }
 
     addOpenHouse() {
-        this.openhouse=new OpenHouse();
-        this.openhouse.Listing=this.listings;
+        this.openhouse = new OpenHouse();
+        this.openhouse.Listing = this.listings;
     }
 
     onSubmit() {
         if (typeof this.openhouse.OpenHouseId == 'undefined') {
             this.openHouseService.saveOpenHouse(this.openhouse).subscribe(response => {
-                 if (response.length !=0) {
+                if (response.length != 0) {
                     this.getAllOpenHouse();
                     this.showForm = false;
                 } else {
@@ -68,7 +68,7 @@ export class OpenHouseComponent implements OnInit {
         else {
             this.openHouseService.updateOpenHouse(this.openhouse).subscribe(response => {
                 console.log("Update");
-                 if (response.length !=0) {
+                if (response.length != 0) {
                     this.getAllOpenHouse();
                     this.showForm = false;
                 } else {
@@ -80,9 +80,13 @@ export class OpenHouseComponent implements OnInit {
     }
 
     updateOpenHouse(updateOpenHouse) {
+
         this.openhouse = updateOpenHouse;
-        this.openhouse.ListingId=updateOpenHouse["ListingId"];
-        this.openhouse.Listing=this.listings;
+        this.openhouse.OpenHouseBeginDate = this.convertDate(updateOpenHouse["OpenHouseBeginDate"]);
+        this.openhouse.OpenHouseEndDate = this.convertDate(updateOpenHouse["OpenHouseEndDate"]);
+        this.openhouse.ListingId = updateOpenHouse["ListingId"];
+        this.openhouse.Listing = this.listings;
+        console.log(this.openhouse);
         this.showForm = true;
     }
 
@@ -101,5 +105,14 @@ export class OpenHouseComponent implements OnInit {
         this.openhouse = new OpenHouse();
         this.showForm = false;
     }
+
+    convertDate(str) {
+        var date = new Date(str),
+            mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+            day = ("0" + date.getDate()).slice(-2);
+        return new Date([mnth,day,date.getFullYear()].join("/"));
+    }
+
+
 
 }

@@ -164,11 +164,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AgentController.cs" />
     <Compile Include="Controllers\ListingController.cs" />
+    <Compile Include="Controllers\OpenHouseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AgentDTO.cs" />
     <Compile Include="Models\ListingDTO.cs" />
+    <Compile Include="Models\OpenHouseDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

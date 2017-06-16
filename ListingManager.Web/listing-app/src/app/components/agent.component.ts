@@ -19,7 +19,7 @@ export class AgentComponent implements OnInit {
     }
     ngOnInit() {
         this.agentServices.getAgents().subscribe(response => {
-            if (response != null) {
+            if (response.length !=0) {
                 this.agents = response;
             } else {
                 this.errorMessage = true;
@@ -29,7 +29,7 @@ export class AgentComponent implements OnInit {
 
     getAllAgents() {
         this.agentServices.getAgents().subscribe(response => {
-            if (response != null) {
+          if (response.length !=0) {
                 this.agents = response;
             } else {
                 this.errorMessage = true;

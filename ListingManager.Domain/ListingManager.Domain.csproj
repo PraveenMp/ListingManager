@@ -88,6 +88,7 @@
     <Compile Include="Repository\AgentRepository.cs" />
     <Compile Include="Repository\ListingMangerContext.cs" />
     <Compile Include="Repository\ListingRepository.cs" />
+    <Compile Include="Repository\OpenHouseRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,0 +1,57 @@
+<div>
+    <h2>OpenHouse Details</h2>
+    <hr>
+    <button class="btn btn-warning add-button" (click)="addOpenHouse();showForm=!showForm">Add OpenHouse</button>
+
+    <div class="form col-md-4" *ngIf="showForm">
+        <form (ngSubmit)="onSubmit()" #openHouse="ngForm">
+            <div class="form-group">
+                <label for="listingname">OpenHouse Begin Date</label>
+                <input type="date" class="form-control" id="begindate" required [(ngModel)]="openhouse.OpenHouseBeginDate" name="begindate" #begindate="ngModel">
+                <div [hidden]="begindate.valid || begindate.pristine" class="alert alert-danger">
+                    Begin date field is required
+                </div>
+            </div>
+              <div class="form-group">
+                <label for="listingaddress">OpenHouse End Date</label>
+                <input type="date" class="form-control" id="enddate" required [(ngModel)]="openhouse.OpenHouseEndDate" name="enddate" #enddate="ngModel">
+                <div [hidden]="enddate.valid || enddate.pristine" class="alert alert-danger">
+                    End Date field is required
+                </div>
+            </div>
+              <div class="form-group">
+                <label for="openhouselisting">Listing Name</label>
+               <select id="openhouselisting" class="form-control"  [(ngModel)]="openhouse.ListingId" name="openhouselisting" #openhouselisting="ngModel"  >
+                   <option *ngFor="let listing of openhouse.Listing"[ngValue]="listing.ListingId">{{listing.ListingName}}</option>
+               </select>
+                <div [hidden]="openhouselisting.valid || openhouselisting.pristine" class="alert alert-danger">
+                    address is required
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="!openHouse.form.valid && !openhouselisting.valid">Submit</button>
+            <button type="submit" class="btn btn-default cust-pointer" (click)="cancel()">Cancel</button>
+        </form>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Begin Date</th>
+                <th>End Date</th>
+                <th>Listing Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="!errorMessage">
+            <tr *ngFor="let openhouse of openHouselist;let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{openhouse.OpenHouseBeginDate | date:'longDate'}}</td>
+                <td>{{openhouse.OpenHouseEndDate | date:'longDate' }}</td>
+                <td>{{openhouse.ListingName}}</td>
+                <td><button class="btn btn-success" (click)="updateOpenHouse(openhouse)">Edit</button> 
+                <button class="btn btn-danger" (click)="deleteOpenHouse(openhouse.ListingId)">Delete</button> </td>
+            </tr>
+        </tbody>
+    </table>
+    <h3 *ngIf="errorMessage">No Openhouse details found.</h3>
+</div>

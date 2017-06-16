@@ -100,12 +100,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ListingManager.Api\ListingManager.Api.csproj">
-      <Project>{602D1196-613E-4727-BA82-CAD4C824E60D}</Project>
-      <Name>ListingManager.Api</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Controllers\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

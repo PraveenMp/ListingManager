@@ -12,17 +12,15 @@ namespace ListingManager.Api
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
-            // Configure Web API to use only bearer token authentication.
-
-
-            // Web API routes
+            //enable cors
             config.EnableCors();
             config.MapHttpAttributeRoutes();
 
+            //Json formatter
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
-            
+            // Web API routes
+            // Web API configuration and services
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

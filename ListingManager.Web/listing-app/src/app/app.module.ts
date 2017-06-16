@@ -13,6 +13,7 @@ import { AppRouterModule } from './app.routing';
 import { AppHelpersService } from 'app/services/app-helper.services';
 import { ListingsService } from 'app/services/listings.services';
 import { AgentService } from 'app/services/agent.services';
+import { OpenHouseService } from 'app/services/openhouse.services';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AgentService } from 'app/services/agent.services';
   providers: [
     AppHelpersService,
     ListingsService,
-    AgentService
+    AgentService,
+    OpenHouseService
   ],
   bootstrap: [AppComponent]
 })

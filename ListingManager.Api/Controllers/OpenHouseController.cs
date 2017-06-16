@@ -14,57 +14,58 @@ using System.Web.Http.Description;
 namespace ListingManager.Api.Controllers
 {
     /// <summary>
-    /// Get the details of listing controller
+    /// Get the details of OpenHouse controller
     /// </summary>
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class ListingController : ApiController
+    public class OpenHouseController : ApiController
     {
-        private IListingRepository listingRespository;
-        public ListingController()
+        private IOpenHouseRepository openHouseRepository;
+        public OpenHouseController()
         {
-            this.listingRespository = new ListingRepository(new ListingManagerContext());
+            this.openHouseRepository = new OpenHouseRepository(new ListingManagerContext());
         }
 
         /// <summary>
-        /// Get all the listings
+        /// Get all the openhouses 
         /// </summary>
         /// <returns>Returns list of listings</returns>
         [HttpGet]
-        [Route("listing")]
+        [Route("openhouse")]
         [ResponseType(typeof(IEnumerable<ListingDTO>))]
         public IHttpActionResult Get()
         {
-            using (listingRespository)
+            using (openHouseRepository)
             {
-                var listing = listingRespository.GetListings();
+                var openhouse = openHouseRepository.GetOpenHouseList();
 
-                var listingDTO = listing.Select(list => new ListingDTO
+                var openHouseDTO = openhouse.Select(list => new OpenHouseDTO
                 {
-                    ListingId = list.ListingId,
-                    ListingAddress = list.ListingAddress,
-                    ListingName = list.ListingName,
-                    AgentId = list.AgentId,
-                    AgentName = list.Agent.AgentName
+                    OpenHouseId=list.OpenHouseId,
+                    OpenHouseBeginDate=list.OpenHouseBeginDate,
+                    OpenHouseEndDate=list.OpenHouseEndDate,
+                    ListingId=list.ListingId,
+                    ListingName=list.Listing.ListingName
+                  
                 }).ToList();
 
-                return Json<IEnumerable<ListingDTO>>(listingDTO);
+                return Json<IEnumerable<OpenHouseDTO>>(openHouseDTO);
             }
         }
 
         /// <summary>
-        /// Add listing details to database
+        /// Add openhouse details to database
         /// </summary>
-        /// <param name="listing">takes listing type as input</param>
+        /// <param name="openhouse">takes openhouse type as input</param>
         /// <returns>Return HttpResponseMessage Type</returns>
         [HttpPost]
-        [Route("listing")]
-        public HttpResponseMessage Post(Listing listing)
+        [Route("openhouse")]
+        public HttpResponseMessage Post(OpenHouse openhouse)
         {
             HttpResponseMessage response;
             try
             {
-                listingRespository.InsertListing(listing);
-                listingRespository.Save();
+                openHouseRepository.InsertOpenHouse(openhouse);
+                openHouseRepository.Save();
             }
             catch (Exception ex)
             {
@@ -76,19 +77,19 @@ namespace ListingManager.Api.Controllers
         }
 
         /// <summary>
-        /// Update listing details
+        /// Update openhouse details
         /// </summary>
-        /// <param name="listing"></param>
+        /// <param name="openhouse"></param>
         /// <returns>Return HttpResponseMessage Type</returns>
         [HttpPut]
-        [Route("listing")]
-        public HttpResponseMessage Put(Listing listing)
+        [Route("openhouse")]
+        public HttpResponseMessage Put(OpenHouse openhouse)
         {
             HttpResponseMessage response;
             try
             {
-                listingRespository.UpdateListing(listing);
-                listingRespository.Save();
+                openHouseRepository.UpdateOpenHouse(openhouse);
+                openHouseRepository.Save();
             }
             catch (Exception ex)
             {
@@ -100,19 +101,19 @@ namespace ListingManager.Api.Controllers
         }
 
         /// <summary>
-        /// Delete the listing
+        /// Delete the openhouse
         /// </summary>
-        /// <param name="listingId"></param>
+        /// <param name="openHouseId"></param>
         /// <returns>Return HttpResponseMessage Type</returns>
         [HttpDelete]
-        [Route("listing/{listingId}")]
-        public HttpResponseMessage Delete(int listingId)
+        [Route("openhouse/{openHouseId}")]
+        public HttpResponseMessage Delete(int openHouseId)
         {
             HttpResponseMessage response;
             try
             {
-                listingRespository.DeleteListing(listingId);
-                listingRespository.Save();
+                openHouseRepository.DeleteOpenHouse(openHouseId);
+                openHouseRepository.Save();
             }
             catch (Exception ex)
             {

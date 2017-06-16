@@ -4,7 +4,7 @@
     <button class="btn btn-warning add-button" (click)="addListings();showForm=!showForm">Add Listing</button>
 
     <div class="form col-md-4" *ngIf="showForm">
-        <form (ngSubmit)="onSubmit()" #agentForm="ngForm">
+        <form (ngSubmit)="onSubmit()" #listing="ngForm">
             <div class="form-group">
                 <label for="listingname">Name</label>
                 <input type="text" class="form-control" id="listingname" required [(ngModel)]="listing.ListingName" name="listingname" #listingname="ngModel">

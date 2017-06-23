@@ -14,6 +14,8 @@ import { AppHelpersService } from 'app/services/app-helper.services';
 import { ListingsService } from 'app/services/listings.services';
 import { AgentService } from 'app/services/agent.services';
 import { OpenHouseService } from 'app/services/openhouse.services';
+import { PagerService } from 'app/shared/pagination.services';
+import { StarRatingModule } from 'angular-star-rating';
 
 @NgModule({
   declarations: [
@@ -26,13 +28,15 @@ import { OpenHouseService } from 'app/services/openhouse.services';
     BrowserModule,
     AppRouterModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    StarRatingModule
   ],
   providers: [
     AppHelpersService,
     ListingsService,
     AgentService,
-    OpenHouseService
+    OpenHouseService,
+    PagerService
   ],
   bootstrap: [AppComponent]
 })

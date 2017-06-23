@@ -1,3 +1,7 @@
 header h2 {
     margin: 25px 0px;
 }
+li.page-item.disabled {
+    cursor: not-allowed;
+}
+     

@@ -20,19 +20,44 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Ratings</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody *ngIf="!errorMessage">
-            <tr *ngFor="let agent of agents;let i=index">
+            <tr *ngFor="let agent of pagedItems;let i=index">
                 <th scope="row">{{i+1}}</th>
                 <td>{{agent.AgentName}}</td>
+                <td>
+                    <star-rating-comp [starType]="'svg'" [hoverEnabled]="true" (onClick)="onClick($event)" (onRatingChange)="onRatingChange($event)"
+                        (onHoverRatingChange)="onHoverRatingChange($event)" [showHalfStars]="true">
+                    </star-rating-comp>
+                </td>
                 <td><button class="btn btn-success" (click)="updateAgent(agent)">Edit</button>
                     <button class="btn btn-danger" (click)="deleteAgent(agent.AgentId)">Delete</button> </td>
             </tr>
         </tbody>
     </table>
     <h3 *ngIf="errorMessage">No Listings Found</h3>
+    <nav aria-label="Page navigation example">
+    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+        <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item">
+            <a (click)="setPage(1)" class="page-link">First</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item">
+            <a (click)="setPage(pager.currentPage - 1)" class="page-link">Previous</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="page-item">
+            <a (click)="setPage(page)" class="page-link">{{page}}</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item">
+            <a (click)="setPage(pager.currentPage + 1)" class="page-link">Next</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item">
+            <a (click)="setPage(pager.totalPages)" class="page-link">Last</a>
+        </li>
+    </ul>
+    </nav>
 </div>
 
 

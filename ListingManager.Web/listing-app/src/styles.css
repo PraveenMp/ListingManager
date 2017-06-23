@@ -19,3 +19,6 @@
     padding: 25% 0px;
     color: #fff;
 }
+.rating[_ngcontent-c1] {
+    outline: -webkit-focus-ring-color auto 0px;
+}

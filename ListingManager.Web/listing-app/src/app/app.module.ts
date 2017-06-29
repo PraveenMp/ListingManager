@@ -9,6 +9,7 @@ import { AgentComponent } from './components/agent.component';
 import { ListingComponent } from './components/listing.component';
 import { OpenHouseComponent } from './components/openhouse.component';
 import { AppRouterModule } from './app.routing';
+import { ToolTipComponent } from 'app/shared/tooltip/tooltip.component';
 
 import { AppHelpersService } from 'app/services/app-helper.services';
 import { ListingsService } from 'app/services/listings.services';
@@ -22,7 +23,8 @@ import { StarRatingModule } from 'angular-star-rating';
     AppComponent,
     AgentComponent,
     ListingComponent,
-    OpenHouseComponent
+    OpenHouseComponent,
+    ToolTipComponent
   ],
   imports: [
     BrowserModule,

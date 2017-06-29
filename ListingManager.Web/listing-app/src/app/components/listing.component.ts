@@ -5,6 +5,11 @@ import { AgentService } from 'app/services/agent.services';
 import { Ilisting } from 'app/interfaces/Ilistings';
 import { Listing } from 'app/models/listing';
 
+export interface IToolTip{
+    title:string,
+    content:string
+}
+
 @Component({
     templateUrl: './listing.component.html'
 })
@@ -14,6 +19,7 @@ export class ListingComponent implements OnInit {
     errorMessage: boolean = false;
     listing = new Listing();
     agentList;
+    tooltip:IToolTip;
 
     constructor(private listingService: ListingsService, private agentServices: AgentService) {
 
@@ -35,6 +41,8 @@ export class ListingComponent implements OnInit {
                 this.errorMessage = true;
             }
         })
+        var tooltipdata= { 'title':"TestingToolTip",'content':'Testing data Testing data Testing Data Testing Data' }
+        this.tooltip=tooltipdata;
 
     }
 
